@@ -1,0 +1,14 @@
+[Unit]
+Description=System Restart
+Documentation=https://github.com/aldy505/system-restart
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/system-restart sshd 0.0.0.0:22
+ExecReload=/bin/kill -SIGHUP $MAINPID
+TimeoutStartSec=20s
+TimeoutStopSec=20s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

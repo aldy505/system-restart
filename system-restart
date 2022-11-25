@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+while [ true ]
+do
+    searchvalue=$(ss -tlpn | grep $2)
+    if [[ -z "$searchvalue" ]]
+    then
+        echo "Oh no, it's dead. Let's try and start it"
+        systemctl restart $1
+    fi
+
+    sleep 60s
+done
